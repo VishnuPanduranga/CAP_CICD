@@ -8,7 +8,8 @@ build-parameters:
   before-all:
     - builder: custom
       commands:
-        - cds build --production
+        - npm i
+        - npx cds build --production
 modules:
   - name: CAP_CICD-srv
     type: nodejs
