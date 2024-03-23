@@ -24,6 +24,7 @@ modules:
           srv-url: ${default-url}
     requires:
       - name: CAP_CICD-db
+      - name: CAP_CICD-auth
 
   - name: CAP_CICD-db-deployer
     type: hdb
@@ -39,3 +40,12 @@ resources:
     parameters:
       service: hana
       service-plan: hdi-shared
+  - name: CAP_CICD-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: CAP_CICD-${org}-${space}
+        tenant-mode: dedicated
